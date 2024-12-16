@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="715" height="199" viewBox="0 0 715 199">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 5px;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        font-size: 213.064px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+        font-family: "Cormorant Garamond";
+      }
+
+      .cls-3 {
+        font-size: 500px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M10,169v-1H244v1H10Z"/>
+  <path id="Shape_3_copy" data-name="Shape 3 copy" class="cls-1" d="M467,169v-1H701v1H467Z"/>
+  <text id="STORE" class="cls-2" transform="translate(253.726 187.89) scale(0.305)">STORE</text>
+  <text id="LUMUS" class="cls-3" transform="translate(110.726 107.89) scale(0.305)">LUMUS</text>
+</svg>

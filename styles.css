@@ -1,0 +1,149 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Barra superior */
+.barra-superior {
+  background-color: #333333; /* Verde escuro */
+  color: #F8F8F8;
+  height: 50px; /* Altura da barra */
+  width: 100%;
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  overflow: hidden; /* Esconde o que passa */
+  position: relative;
+}
+
+/* Container do texto rolante */
+.conteudo-rolante {
+  width: 100%;
+  overflow: hidden; /* Esconde o texto que está fora da tela */
+  white-space: nowrap; /* Impede que o texto quebre de linha */
+  position: relative;
+  background-color: #333333; /* Cor de fundo para destaque */
+}
+
+/* Texto rolante */
+.texto {
+  display: inline-block;
+  
+  animation: rolar 30s linear infinite; /* Animação contínua */
+  color: #F8F8F8;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Clona o texto para criar o efeito infinito */
+.texto::after {
+  content: "DETALHES QUE ETERNIZAM MOMENTOS";
+}
+
+.bullet {
+  margin: 0 50px; /* Espaço grande à esquerda e direita */
+  color: #F8F8F8; /* Ajusta a cor, se necessário */
+}
+
+/* Animação */
+@keyframes rolar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Estilos gerais */
+.header {
+  position: relative; /* Define um contexto para o carrinho */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  color: #000000; /* Cor da logo */
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+}
+
+/* Logo */
+.logo {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Ícone do carrinho */
+.cart-icon {
+  position: absolute; /* Não influencia o fluxo normal */
+  right: 20px; /* Posiciona no canto direito */
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza verticalmente */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #B22222; /* Vermelho para destaque */
+  color: #333;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.cart-svg {
+  width: 24px; /* Define a largura */
+  height: 24px; /* Define a altura */
+  fill: #333; /* Define a cor */
+}
+
+
+
+/* Estilização do container principal */
+.logo-container {
+  position: relative; /* Torna o posicionamento da imagem possível */
+  display: inline-block;
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  font-size: 32px; /* Ajuste o tamanho do texto */
+  color: #000000; /* Cor do texto */
+  cursor: pointer;
+}
+
+/* Oculta a imagem da logo inicialmente */
+.logo-image {
+  position: absolute;
+  top: 0; 
+  left: 50%; /* Centraliza a imagem horizontalmente */
+  transform: translate(-50%, 0);
+  opacity: 0; /* Esconde a imagem */
+  transition: opacity 0.5s ease-in-out; /* Adiciona uma transição suave */
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+}
+
+/* Efeito hover: mostra a imagem e esconde o texto */
+.logo-container:hover .logo-image {
+  opacity: 1; /* Torna a imagem visível */
+}
+
+.logo-container:hover .logo-text {
+  opacity: 0; /* Esconde o texto */
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+
+
+
+
+
