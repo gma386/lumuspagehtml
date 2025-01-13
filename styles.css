@@ -82,7 +82,7 @@ body {
 .cart-icon {
   position: absolute; /* Não influencia o fluxo normal */
   right: 20px; /* Posiciona no canto direito */
-  top: 50%;
+  top: 20%;
   transform: translateY(-50%); /* Centraliza verticalmente */
   cursor: pointer;
   display: flex;
@@ -94,7 +94,7 @@ body {
   top: -5px;
   right: -10px;
   background-color: #B22222; /* Vermelho para destaque */
-  color: #333;
+  color: #ffffff;
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 12px;
@@ -113,22 +113,31 @@ body {
   position: relative; /* Torna o posicionamento da imagem possível */
   display: inline-block;
   text-align: center;
+  align-items: center; /* Alinha o conteúdo (texto e imagem) verticalmente */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
   font-family: 'Times New Roman', serif;
   font-size: 32px; /* Ajuste o tamanho do texto */
   color: #000000; /* Cor do texto */
   cursor: pointer;
+  line-height: 2.8; /* Garante altura consistente para o texto */
 }
 
 /* Oculta a imagem da logo inicialmente */
 .logo-image {
   position: absolute;
-  top: 0; 
   left: 50%; /* Centraliza a imagem horizontalmente */
   transform: translate(-50%, 0);
   opacity: 0; /* Esconde a imagem */
   transition: opacity 0.5s ease-in-out; /* Adiciona uma transição suave */
-  width: 150px; /* Ajuste o tamanho conforme necessário */
+  width: 100px; /* Ajuste o tamanho conforme necessário */
   height: auto;
+}
+
+/* Estilo inicial do texto com transição */
+.logo-text {
+  margin-top:50;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* Adiciona transição para o texto */
 }
 
 /* Efeito hover: mostra a imagem e esconde o texto */
@@ -141,6 +150,26 @@ body {
   transition: opacity 0.5s ease-in-out;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.main img {
+
+  padding: 10px;
+
+}
+
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row; /* Organiza os brinquedos em linha, lado a lado */
+    flex-wrap: wrap; /* Se não couberem todos os brinquedos em uma linha, eles vão para a linha de baixo */
+  }
+}
 
 
 
