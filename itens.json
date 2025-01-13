@@ -1,17 +1,21 @@
 [
   {
+    "codigo" : "zdx123",
     "nome" : "pulseira",
     "valor" : 24.50
   },
   {
+    "codigo" : "ywx123",
     "nome" : "colar",
     "valor" : 50.00
   },
   {
+    "codigo" : "xzd123",
     "nome" : "colar",
     "valor" : 50.00
   },
   {
+    "codigo" : "xca123",
     "nome" : "colar",
     "valor" : 50.00
   }
