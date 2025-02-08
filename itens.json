@@ -1,22 +1,33 @@
 [
   {
     "codigo" : "zdx123",
-    "nome" : "pulseira",
+    "nome" : "brinco",
+    "quantidadeDisponivel" : 15,
     "valor" : 24.50
+
   },
   {
     "codigo" : "ywx123",
     "nome" : "colar",
+    "quantidadeDisponivel" : 5,
     "valor" : 50.00
   },
   {
     "codigo" : "xzd123",
     "nome" : "colar",
+    "quantidadeDisponivel" : 5,
     "valor" : 50.00
   },
   {
     "codigo" : "xca123",
-    "nome" : "colar",
+    "nome" : "brinco",
+    "quantidadeDisponivel" : 5,
+    "valor" : 50.00
+  },
+  {
+    "codigo" : "dfr122",
+    "nome" : "brinco",
+    "quantidadeDisponivel" : 5,
     "valor" : 50.00
   }
   

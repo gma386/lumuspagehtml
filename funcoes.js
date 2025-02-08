@@ -31,15 +31,96 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // Cria um elemento <img> para cada item no JSON
-        const imgElement = document.createElement("img");
-        imgElement.src = `https://dummyimage.com/400x400/f56ee8/000.png&text=${encodeURIComponent(item.nome)}+R$${item.valor.toFixed(2)}`;
-        imgElement.alt = item.nome;
+        const card = document.createElement("div");
+        card.classList.add("product-card");
 
-        mainElement.appendChild(imgElement); // Adiciona a imagem ao main
+        
+        const imgElement = document.createElement("img");
+        imgElement.src = `img/img-products/${item.codigo}.jpg`
+        imgElement.alt = item.nome;
+        imgElement.style.cursor = "pointer";
+
+        const info = document.createElement("div");
+        info.classList.add("product-info");
+        info.innerHTML = `<h3>${item.nome}</h3><p>R$ ${item.valor.toFixed(2)}</p>`;
+
+        const select = document.createElement("select");
+        select.classList.add("quantity-select");
+        for (let i = 1; i <= item.quantidadeDisponivel; i++) {
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          select.appendChild(option);
+        }
+
+        const button = document.createElement("button");
+        button.classList.add("add-to-cart");
+        button.textContent = "Adicionar ao Carrinho";
+        button.addEventListener("click", () => {
+          console.log(`Adicionado: ${item.nome}, Quantidade: ${select.value}`);
+        });
+
+        card.appendChild(imgElement);
+        card.appendChild(info);
+        card.appendChild(select);
+        card.appendChild(button);
+        mainElement.appendChild(card);
+        //mainElement.appendChild(imgElement); // Adiciona a imagem ao main
+
+        
+        imgElement.addEventListener("click", () => {
+          // Criar modal
+          const modal = document.createElement("div");
+          modal.classList.add("modal");
+          
+          // Criar imagem grande no modal
+          const modalImg = document.createElement("img");
+          modalImg.src = imgElement.src;
+          modalImg.classList.add("modal-img");
+      
+          // Adicionar imagem ao modal
+          modal.appendChild(modalImg);
+          document.body.appendChild(modal);
+      
+          // Fechar modal ao clicar fora da imagem
+          modal.addEventListener("click", () => {
+            modal.remove();
+          });
+        });
+
+
+        // Adiciona a classe na imagem
+        //imgElement.classList.add("produto-imagem");
+
+        // Imagem default toda vez que o itens.json tiver um codigo que nao corresponde a uma imagem
+        imgElement.onerror = () => {
+          imgElement.src = `https://dummyimage.com/400x400/bbb/000.png&text=${encodeURIComponent(item.nome)}+R$${item.valor.toFixed(2)}`;
+        };
+
+        
       });
     })
     .catch(error => {
       console.error("Erro ao carregar ou processar o JSON:", error);
     });
+
+
+  quantidadeCarrinho();
+
 });
+
+function quantidadeCarrinho() {
+  let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+  if(carrinho.length > 0){
+    const spanElement = document.createElement('span');
+    spanElement.textContent = carrinho.length
+    spanElement.classList.add("cart-count")
+    
+    const mainElement = document.querySelector(".cart-icon");
+
+    if(mainElement) {
+      mainElement.appendChild(spanElement);
+    }
+  }
+}
