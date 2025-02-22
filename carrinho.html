@@ -184,21 +184,39 @@
         }
 
         function gerarLinkWhatsApp(carrinho, total) {
-          
-            let mensagem = "Olá, gostaria de fazer o pedido:\n\n";
-            carrinho.forEach(itemCarrinho => {
-              
-                const item = JSON.parse(localStorage.getItem('carrinho'))?.find(i => i.codigo === itemCarrinho.codigo);
-                console.log(item)
-                if (item) {
-                    mensagem += `${item.nome} - Quantidade: ${itemCarrinho.quantidade} - Preço: R$ ${item.valor.toFixed(2)}\n`;
-                }
-            });
-            mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+            
+            const jsonUrl = "itens.json"; // URL do arquivo JSON
+            fetch(jsonUrl)
+            .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro ao carregar o JSON. Status: ${response.status}`);
+            }
+            return response.json();
+            })
+            .then(itens => {
+            if (!Array.isArray(itens) || itens.length === 0) {
+                console.error("O JSON carregado está vazio ou não é um array.");
+                return;
+            }
+                let mensagem = "Olá, gostaria de fazer o pedido:\n\n";
 
-            const encodedMessage = encodeURIComponent(mensagem);
-            const whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodedMessage}`;  // Número fictício +55 55 1234567890
-            document.getElementById('whatsappLink').href = whatsappUrl;
+                carrinho.forEach(itemCarrinho => {
+                    var itemEncontrado = itens.find(i => i.codigo === itemCarrinho.codigo)
+
+                    if (itemEncontrado) {
+                    mensagem += `${itemEncontrado.nome} - Quantidade: ${itemCarrinho.quantidade} - Preço: R$ ${itemEncontrado.valor.toFixed(2)}\n`;
+                }
+                })
+
+                mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+
+                const encodedMessage = encodeURIComponent(mensagem);
+                const whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodedMessage}`;  // Número fictício +55 55 1234567890
+                document.getElementById('whatsappLink').href = whatsappUrl;
+                
+            })
+            
+            
         }
 
         exibirCarrinho();
