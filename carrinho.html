@@ -233,7 +233,13 @@
 
 
                 const encodedMessage = encodeURIComponent(mensagem);
-                const whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodedMessage}`;  // Número fictício +55 55 1234567890
+                var whatsappUrl = "";
+                if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+                    whatsappUrl = `https://wa.me/554488456511?text=${encodeURIComponent(mensagem)}`;
+                } else {
+                    whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodeURIComponent(mensagem)}`;
+                }
+                //const whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodedMessage}`;  // Número fictício +55 55 1234567890
                 document.getElementById('whatsappLink').href = whatsappUrl;
                 
             })
