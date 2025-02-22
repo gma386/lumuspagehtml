@@ -57,7 +57,32 @@ document.addEventListener("DOMContentLoaded", () => {
         button.classList.add("add-to-cart");
         button.textContent = "Adicionar ao Carrinho";
         button.addEventListener("click", () => {
-          console.log(`Adicionado: ${item.nome}, Quantidade: ${select.value}`);
+          let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+          
+          const novoItem = {
+            codigo: item.codigo,
+            quantidade: parseInt(select.value, 10) || 1
+          };
+        
+          // Verifica se o item já está no carrinho
+          const itemExistente = carrinho.find(produto => produto.codigo === novoItem.codigo);
+        
+          if (itemExistente) {
+            // Se já existe, apenas atualiza a quantidade
+            itemExistente.quantidade += novoItem.quantidade;
+          } else {
+            // Se não existe, adiciona ao carrinho
+            carrinho.push(novoItem);
+          }
+        
+          // Salva no localStorage
+          localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        
+          //console.log(`Adicionado: ${novoItem.codigo}, Quantidade: ${novoItem.quantidade}`);
+        
+          // Atualiza a contagem do carrinho
+          quantidadeCarrinho();
+          mostrarAviso(`${item.nome} adicionado ao carrinho!`);
         });
 
         card.appendChild(imgElement);
@@ -123,4 +148,19 @@ function quantidadeCarrinho() {
       mainElement.appendChild(spanElement);
     }
   }
+}
+
+// Função para exibir o aviso flutuante
+function mostrarAviso(mensagem) {
+  const aviso = document.createElement("div");
+  aviso.classList.add("aviso-flutuante");
+  aviso.textContent = mensagem;
+
+  document.body.appendChild(aviso);
+
+  // Remove o aviso após 3 segundos
+  setTimeout(() => {
+    aviso.classList.add("desaparecendo");
+    setTimeout(() => aviso.remove(), 500);
+  }, 2500);
 }

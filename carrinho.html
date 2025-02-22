@@ -13,7 +13,7 @@
         }
         h1 {
             text-align: center;
-            color: #4CAF50;
+            color: #000000;
             margin-bottom: 40px;
         }
         .carrinho-container {
@@ -57,7 +57,7 @@
         }
         .carrinho-item button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #ed3131;
             border: none;
             color: white;
             border-radius: 4px;
@@ -65,7 +65,7 @@
             transition: background-color 0.3s;
         }
         .carrinho-item button:hover {
-            background-color: #45a049;
+            background-color: #ac3838;
         }
         .total {
             font-size: 18px;
@@ -125,6 +125,8 @@
             carrinhoElement.innerHTML = '';  // Limpa qualquer conteúdo anterior
             let total = 0;
 
+
+
             carrinho.forEach(itemCarrinho => {
                 const item = itens.find(i => i.codigo === itemCarrinho.codigo);
 
@@ -134,7 +136,15 @@
 
                     const img = document.createElement('img');
                     img.classList.add('item-imagem');
-                    img.src = `https://via.placeholder.com/100x100.png?text=${encodeURIComponent(item.nome)}`;
+
+                    img.src = `img/img-products/${item.codigo}.jpg`
+                    img.alt = item.nome;
+
+
+                    img.onerror = () => {
+                    img.src = `https://dummyimage.com/100x100/bbb/000.png&text=${encodeURIComponent(item.nome)}+R$${item.valor.toFixed(2)}`;
+                    };
+
 
                     const itemInfo = document.createElement('div');
                     itemInfo.classList.add('item-info');

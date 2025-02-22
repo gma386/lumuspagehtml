@@ -266,6 +266,24 @@ body {
   border-radius: 10px;
 }
 
+.aviso-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #504e4e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+.aviso-flutuante.desaparecendo {
+  opacity: 0;
+}
 
 
 
