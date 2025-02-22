@@ -80,6 +80,7 @@ body {
 
 /* Ícone do carrinho */
 .cart-icon {
+  text-decoration: none;
   position: absolute; /* Não influencia o fluxo normal */
   right: 20px; /* Posiciona no canto direito */
   top: 20%;
@@ -87,6 +88,10 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: black; 
+}
+.cart-icon:hover{
+  color: black;
 }
 
 .cart-count {

@@ -98,12 +98,31 @@
         .whatsapp-button:hover {
             background-color: #128C7E;
         }
+        .button {
+            display: block;
+            background-color: #828483;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #565757;
+        }
     </style>
 </head>
 <body>
     <h1>Carrinho de Compras</h1>
     <div class="carrinho-container" id="carrinho"></div>
     <div class="total" id="total"></div>
+    <a href="index.html" class="button">Voltar</a>
     <a href="#" id="whatsappLink" class="whatsapp-button" target="_blank">Enviar Pedido pelo WhatsApp</a>
     <div class="footer">
         <p>Feito com ❤ pela Lumus Store</p>
@@ -199,7 +218,6 @@
                 return;
             }
                 let mensagem = "Olá, gostaria de fazer o pedido:\n\n";
-
                 carrinho.forEach(itemCarrinho => {
                     var itemEncontrado = itens.find(i => i.codigo === itemCarrinho.codigo)
 
@@ -207,8 +225,12 @@
                     mensagem += `${itemEncontrado.nome} - Quantidade: ${itemCarrinho.quantidade} - Preço: R$ ${itemEncontrado.valor.toFixed(2)}\n`;
                 }
                 })
-
                 mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
+
+                if (carrinho.length === 0) {
+                    mensagem = "Olá, gostaria de fazer um pedido!";
+                }
+
 
                 const encodedMessage = encodeURIComponent(mensagem);
                 const whatsappUrl = `https://web.whatsapp.com/send?phone=554488456511&text=${encodedMessage}`;  // Número fictício +55 55 1234567890
